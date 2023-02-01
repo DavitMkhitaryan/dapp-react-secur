@@ -1,6 +1,8 @@
 const AddCitizen = () => {
     return(
-        <main>AddCitizen</main>
+        <main className="h-screen flex items-center justify-center">
+            AddCitizen
+        </main>
     );
 }
 
