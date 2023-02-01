@@ -1,16 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './index.css';
+import { Web3ReactProvider } from '@web3-react/core'
+import { ExternalProvider, JsonRpcFetchFunc, Web3Provider } from "@ethersproject/providers";
+
+function getLibrary(provider: ExternalProvider | JsonRpcFetchFunc) {
+  return new Web3Provider(provider);
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  <Web3ReactProvider getLibrary={getLibrary}>
     <App />
-  </React.StrictMode>
+  </Web3ReactProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
