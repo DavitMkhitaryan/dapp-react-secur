@@ -1,17 +1,44 @@
 import { useEffect, useState } from "react";
-
 interface HomeProps {
     // to do, type of contract
     contract: any;
 }
 
+interface Citizen {
+    id: string;
+    name: string;
+    age: string;
+    city: string;
+}
+
 const Home: React.FC<HomeProps> = ({ contract }) => {
 
     const [note, setNote] = useState<string>('');
+    const [citizenList, setCitizenList] = useState<Citizen[]>([]);
 
     useEffect(() => {
-        // contract.methods.addCitizen(23, 'Yerevan', 'Davit', 'My Note').call((err: any, result: any) => {console.log(result)});
-        contract.methods.getNoteByCitizenId(1).call((err: any, result: any) => {setNote(result)});
+        const fetchCitizens = async () => {
+            await contract.getPastEvents(
+                'Citizen',
+                {
+                    fromBlock: 0,
+                    toBlock: 'latest'
+                },
+                (err: any, events: any) => {
+                    events.forEach((event: any) => {
+                        let citizen: Citizen = {
+                            id: event.returnValues[0],
+                            name: event.returnValues[3],
+                            age: event.returnValues[1],
+                            city: event.returnValues[2]
+                        }
+                        setCitizenList([...citizenList, citizen]);
+                    });
+                }
+            )
+        }
+        fetchCitizens();
+        console.log(citizenList);
     }, []);
 
     return (
@@ -19,8 +46,12 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
             <div>
                 Home
             </div>
-            <div>
-               {note}
+            <div className="flex flex-col gap-5">
+                {/* <p>{citizenList[0].id}</p> */}
+                {/* <p>{citizenList[0].id}</p>
+                <p>{citizenList[0].name}</p>
+                <p>{citizenList[0].age}</p>
+                <p>{citizenList[0].city}</p> */}
             </div>
         </main>
     );

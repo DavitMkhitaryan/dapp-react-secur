@@ -14,7 +14,7 @@ const Injected = new InjectedConnector({
 
 let web3 = new Web3(Web3.givenProvider);
 const address = '0xce8428D93682C59027699a90676E1365E8bF8FcF';
-const contract = new web3.eth.Contract(citizen, address)
+const contract = new web3.eth.Contract(citizen, address);
 
 function App() {
 
@@ -49,7 +49,7 @@ function App() {
       <Navbar isMetamaskConnected={active} onConnectClick={handleConnectClick} account={account} />
       <Routes>
         <Route path='/' element={<Home contract={contract}/>} />
-        <Route path='add-citizen' element={<AddCitizen />} />
+        <Route path='add-citizen' element={<AddCitizen contract={contract} account={account}/>} />
       </Routes>
     </BrowserRouter>
   );

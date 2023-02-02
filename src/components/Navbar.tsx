@@ -16,15 +16,15 @@ const Navbar: React.FC<NavbarProps> = ({ isMetamaskConnected, onConnectClick, ac
             {isMetamaskConnected ?
                 <div className='flex items-center'>
                     <Link to='/add-citizen'>
-                        <button className='text-md bg-gray-300 px-12 py-2 m-2 rounded hover:bg-green-400 active:bg-green-600 w-32 h-12 flex justify-center items-center' onClick={onConnectClick}>
+                        <button className='text-md bg-gray-300 px-12 py-2 m-2 max-h-10 rounded hover:bg-green-400 active:bg-green-600 w-32 h-12 flex justify-center items-center' onClick={onConnectClick}>
                             <p className='whitespace-nowrap'>Add Citizen</p>
                         </button>
                     </Link>
-                    <div className='text-sm border border-gray-200 px-4 py-4 m-2 rounded w-25 h-12 flex justify-center items-center'>
+                    <div className='text-sm border border-gray-300 px-4 py-4 m-2 max-h-10 rounded w-25 h-12 flex justify-center items-center'>
                         {account}
                     </div>
                 </div>
-                : <button className='text-md bg-gray-300 px-8 py-2 m-2 rounded hover:bg-green-400 active:bg-green-600 w-28 flex justify-center items-center' onClick={onConnectClick}>
+                : <button className='text-md bg-gray-300 px-8 py-2 m-2 max-h-10 rounded hover:bg-green-400 active:bg-green-600 w-28 flex justify-center items-center' onClick={onConnectClick}>
                     Connect
                 </button>}
         </header>
