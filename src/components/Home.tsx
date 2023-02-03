@@ -42,7 +42,7 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
                 Home
             </div>
             {citizenList.length > 0 &&
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5 items-center">
                     <p>{citizenList[citizenList.length-1].id}</p>
                     <p>{citizenList[citizenList.length-1].name}</p>
                     <p>{citizenList[citizenList.length-1].age}</p>
