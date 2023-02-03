@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import citizen from "../abis/citizen";
 interface HomeProps {
     // to do, type of contract
     contract: any;
@@ -17,28 +18,22 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
     const [citizenList, setCitizenList] = useState<Citizen[]>([]);
 
     useEffect(() => {
-        const fetchCitizens = async () => {
-            await contract.getPastEvents(
-                'Citizen',
-                {
-                    fromBlock: 0,
-                    toBlock: 'latest'
-                },
-                (err: any, events: any) => {
-                    events.forEach((event: any) => {
-                        let citizen: Citizen = {
-                            id: event.returnValues[0],
-                            name: event.returnValues[3],
-                            age: event.returnValues[1],
-                            city: event.returnValues[2]
-                        }
-                        setCitizenList([...citizenList, citizen]);
-                    });
+        let newCitizensArr: Citizen[] = [];
+
+        contract.getPastEvents('Citizen', { fromBlock: 0, toBlock: 'latest' }).then((events: any) => {
+            console.log(events);
+            events.forEach((event: any) => {
+                let citizen: Citizen = {
+                    id: event.returnValues[0],
+                    name: event.returnValues[3],
+                    age: event.returnValues[1],
+                    city: event.returnValues[2]
                 }
-            )
-        }
-        fetchCitizens();
-        console.log(citizenList);
+                newCitizensArr.push(citizen);
+            });
+            console.log(newCitizensArr);
+            setCitizenList([...citizenList, ...newCitizensArr]);
+        });
     }, []);
 
     return (
@@ -46,13 +41,14 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
             <div>
                 Home
             </div>
-            <div className="flex flex-col gap-5">
-                {/* <p>{citizenList[0].id}</p> */}
-                {/* <p>{citizenList[0].id}</p>
-                <p>{citizenList[0].name}</p>
-                <p>{citizenList[0].age}</p>
-                <p>{citizenList[0].city}</p> */}
-            </div>
+            {citizenList.length > 0 &&
+                <div className="flex flex-col gap-5">
+                    <p>{citizenList[citizenList.length-1].id}</p>
+                    <p>{citizenList[citizenList.length-1].name}</p>
+                    <p>{citizenList[citizenList.length-1].age}</p>
+                    <p>{citizenList[citizenList.length-1].city}</p>
+                </div>
+            }
         </main>
     );
 }
