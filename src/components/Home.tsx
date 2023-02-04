@@ -32,23 +32,36 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
                 newCitizensArr.push(citizen);
             });
             console.log(newCitizensArr);
-            setCitizenList([...citizenList, ...newCitizensArr]);
+            setCitizenList([...newCitizensArr]);
         });
     }, []);
 
+    let content = citizenList.map((citizen) => {
+        return(
+            <tr key={citizen.id}>
+                <td>{citizen.id}</td>
+                <td>{citizen.name}</td>
+                <td>{citizen.age}</td>
+                <td>{citizen.city}</td>
+            </tr>
+        );
+    })
+
     return (
         <main className="h-screen flex items-center justify-center flex-col gap-5">
-            <div>
-                Home
-            </div>
-            {citizenList.length > 0 &&
-                <div className="flex flex-col gap-5 items-center">
-                    <p>{citizenList[citizenList.length-1].id}</p>
-                    <p>{citizenList[citizenList.length-1].name}</p>
-                    <p>{citizenList[citizenList.length-1].age}</p>
-                    <p>{citizenList[citizenList.length-1].city}</p>
-                </div>
-            }
+            <table className="border border-gray">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>NAME</td>
+                        <td>AGE</td>
+                        <td>CITY</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {content}
+                </tbody>
+            </table>
         </main>
     );
 }

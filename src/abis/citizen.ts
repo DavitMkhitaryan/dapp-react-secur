@@ -22,7 +22,7 @@ const citizen: AbiItem[] = [
 				"type": "uint256"
 			},
 			{
-				"indexed": true,
+				"indexed": false,
 				"internalType": "string",
 				"name": "city",
 				"type": "string"
@@ -87,3 +87,4 @@ const citizen: AbiItem[] = [
 ]
 
 export default citizen;
+

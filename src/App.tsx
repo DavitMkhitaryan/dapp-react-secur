@@ -13,7 +13,7 @@ const Injected = new InjectedConnector({
 });
 
 let web3 = new Web3(Web3.givenProvider);
-const address = '0xce8428D93682C59027699a90676E1365E8bF8FcF';
+const address = '0x76c927389DbAc06d4657F08d8D93Bb641f25a826';
 const contract = new web3.eth.Contract(citizen, address);
 
 function App() {
