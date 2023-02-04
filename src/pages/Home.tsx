@@ -49,7 +49,23 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
 
     return (
         <main className="h-screen flex items-center justify-center flex-col gap-5">
-            
+            <div className="flex gap-16">
+                <p>Citizens List</p>
+                <p>Total Records: {citizenList.length}</p>
+            </div>
+            <table className="border border-gray">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>NAME</td>
+                        <td>AGE</td>
+                        <td>CITY</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {content}
+                </tbody>
+            </table>
         </main>
     );
 }

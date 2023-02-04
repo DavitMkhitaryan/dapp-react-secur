@@ -4,8 +4,8 @@ import { useWeb3React } from '@web3-react/core';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Web3 from 'web3';
 import Navbar from './components/Navbar';
-import Home from "./components/Home";
-import AddCitizen from "./components/AddCitizen";
+import Home from "./pages/Home";
+import AddCitizen from "./pages/AddCitizen";
 import citizen from './abis/citizen';
 
 const Injected = new InjectedConnector({
