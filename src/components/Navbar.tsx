@@ -24,8 +24,8 @@ const Navbar: React.FC<NavbarProps> = ({ isMetamaskConnected, onConnectClick, ac
                         <p className='account-txt text-sm md:text-base'>{account}</p>
                     </div>
                 </div>
-                : <button className='text-md bg-gray-300 px-8 py-2 m-2 max-h-10 rounded hover:bg-green-400 active:bg-green-600 w-14 md:w-28 flex justify-center items-center' onClick={onConnectClick}>
-                    Connect
+                : <button className='bg-gray-300 px-8 py-2 m-2 max-h-10 rounded hover:bg-green-400 active:bg-green-600 w-18 md:w-28 flex justify-center items-center' onClick={onConnectClick}>
+                    <p className='text-sm md:text-base'>Connect</p>
                 </button>}
         </header>
     );
