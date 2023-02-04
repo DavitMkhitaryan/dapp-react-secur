@@ -7,7 +7,7 @@ interface AddCitizenProps {
 
 const AddCitizen: React.FC<AddCitizenProps> = ({ contract, account }) => {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             name: '',
             age: '',
@@ -23,7 +23,7 @@ const AddCitizen: React.FC<AddCitizenProps> = ({ contract, account }) => {
                 contract.methods.addCitizen(data.age, data.city, data.name, data.note).send({
                     from: account
                 }).then(console.log('Success'));
-            })} className='grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-1 border border-gray-200 p-20 shadow-md'>
+            })} className='grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-1 border border-gray-200 p-20 shadow-md m-5'>
                 <div className="flex flex-col gap-2">
                     <label>Name</label>
                     <input {...register("name", { required: true, maxLength: 150 })} className='border border-gray-200 focus:outline-green-300 rounded-md px-1 py-0.5'/>
