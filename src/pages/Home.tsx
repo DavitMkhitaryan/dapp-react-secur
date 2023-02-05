@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
+import Modal from "../components/Modal";
 import Pagination from "../components/Pagination";
 
 interface HomeProps {
@@ -18,6 +19,8 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
     // const [note, setNote] = useState<string>('');
     const [citizenList, setCitizenList] = useState<Citizen[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [modalDisplayed, setModalDisplayed] = useState(false);
+
     const pageSize = 5;
 
     useEffect(() => {
@@ -45,9 +48,17 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
         return citizenList.slice(firstPageIndex, lastPageIndex);
     }, [currentPage, citizenList]);
 
+    const handleRowClick = (citizen: Citizen) => {
+        setModalDisplayed(true);
+    }
+
+    const handleModalClose = () => {
+        setModalDisplayed(false);
+    }
+
     let content = currentTableData.map((citizen) => {
         return (
-            <tr key={citizen.id}>
+            <tr key={citizen.id} className='hover:bg-gray-200 hover:cursor-pointer active:bg-gray-400' onClick={() => handleRowClick(citizen)}>
                 <td>{citizen.id}</td>
                 <td>{citizen.name}</td>
                 <td>{citizen.age}</td>
@@ -56,8 +67,11 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
         );
     });
 
+    let actionBar = <div>Action</div>
+
     return (
         <main className="h-screen flex items-center justify-center flex-col gap-5">
+            {modalDisplayed && <Modal onClose={handleModalClose} actionBar={actionBar}>Hey</Modal>}
             <div className="flex justify-between text-base w-[20rem] px-1 md:text-lg md:w-[50rem] md:px-1">
                 <p>Citizens List</p>
                 <p>Total Records: <span className="font-bold text-green-500">{citizenList.length}</span></p>
