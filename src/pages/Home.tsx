@@ -58,12 +58,12 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
 
     return (
         <main className="h-screen flex items-center justify-center flex-col gap-5">
-            <div className="flex justify-between md:text-lg w-[50rem] px-1">
+            <div className="flex justify-between text-base w-[20rem] px-1 md:text-lg md:w-[50rem] md:px-1">
                 <p>Citizens List</p>
                 <p>Total Records: <span className="font-bold text-green-500">{citizenList.length}</span></p>
             </div>
-            <table className="border border-gray table-fixed w-[50rem] m-12 text-center text-sm md:text-lg">
-                <thead className="border-b-2 shadow-sm">
+            <table className="border border-gray table-fixed w-[20rem] md:w-[50rem] m-12 text-center text-sm md:text-base">
+                <thead className="border-b-2 shadow-sm py-2">
                     <tr>
                         <th>ID</th>
                         <th>NAME</th>
