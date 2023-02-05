@@ -45,7 +45,7 @@ const Pagination: React.FC<PaginationProps> = props => {
 
     return (
         <tfoot
-            className={classnames('pagination-container border-t-2 pt-2 w-[20rem] md:w-[50rem] flex justify-center', { [className]: className })}
+            className={classnames('pagination-container', { [className]: className })}
         >
             <tr className='flex flex-row'>
                 <td

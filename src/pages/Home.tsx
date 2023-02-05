@@ -62,8 +62,8 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
                 <p>Citizens List</p>
                 <p>Total Records: <span className="font-bold text-green-500">{citizenList.length}</span></p>
             </div>
-            <table className="border border-gray table-fixed w-[20rem] md:w-[50rem] m-12 text-center text-sm md:text-base">
-                <thead className="border-b-2 shadow-sm py-2">
+            <table className="border-2 border-gray table-fixed w-[20rem] md:w-[50rem] h-[18rem] m-12 text-center text-sm md:text-base">
+                <thead className="border-b-2 shadow-sm py-2 bg-gray-200">
                     <tr>
                         <th>ID</th>
                         <th>NAME</th>
@@ -75,7 +75,7 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
                     {content}
                 </tbody>
                 <Pagination
-                    className="pagination-bar"
+                    className="border-t-2 py-1.3 w-[19.85rem] md:w-[49.85rem] flex justify-center bg-gray-200 relative top-[1.75rem] md:top-[1.2rem]"
                     currentPage={currentPage}
                     totalCount={citizenList.length}
                     pageSize={pageSize}
