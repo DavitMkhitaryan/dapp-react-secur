@@ -40,6 +40,7 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
             console.log(newCitizensArr);
             setCitizenList([...newCitizensArr]);
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const currentTableData = useMemo(() => {
