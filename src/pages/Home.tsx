@@ -86,11 +86,11 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
                         <th>CITY</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="h-[100%]">
                     {content}
                 </tbody>
                 <Pagination
-                    className="border-t-2 py-1.3 w-[19.85rem] md:w-[49.85rem] flex justify-center bg-gray-200 relative top-[1.75rem] md:top-[1.2rem]"
+                    className="border-t-2 py-1.3 w-[19.85rem] md:w-[49.85rem] flex justify-center bg-gray-200"
                     currentPage={currentPage}
                     totalCount={citizenList.length}
                     pageSize={pageSize}
