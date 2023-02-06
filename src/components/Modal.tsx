@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
     return ReactDOM.createPortal(
         <div>
             <div className="fixed inset-0 bg-gray-300 opacity-80" onClick={onClose}></div>
-            <div className="fixed inset-80 w-[50vw] h-[25vh] p-10 bg-white border-2 border-gray-200 drop-shadow-lg">
+            <div className="fixed inset-x-0 inset-y-[25vh] m-10 h-[25rem] md:inset-80 md:w-[50vw] md:h-[25vh] p-10 bg-white border-2 border-gray-200 drop-shadow-lg">
                 <div className="flex flex-col justify-between h-full">
                     {children}
                     <div className="flex justify-end">

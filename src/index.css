@@ -32,3 +32,9 @@ textarea {
   text-overflow: clip;
   max-width: 200px;
 }
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

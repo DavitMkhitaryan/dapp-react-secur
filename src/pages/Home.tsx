@@ -78,7 +78,7 @@ const Home: React.FC<HomeProps> = ({ contract }) => {
     return (
         <main className="h-screen flex items-center justify-center flex-col gap-5">
             {modalDisplayed && <Modal onClose={handleModalClose}>
-                <p className="text-lg">Notes: </p>
+                <p className="text-lg font-bold text-green-500">Notes: </p>
                 <p className="truncate">{currentNote}</p>
                 </Modal>}
             <div className="flex justify-between text-base w-[20rem] px-1 md:text-lg md:w-[50rem] md:px-1">
