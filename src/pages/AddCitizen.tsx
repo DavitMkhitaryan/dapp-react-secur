@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { TailSpin } from 'react-loader-spinner'
+import { TailSpin } from 'react-loader-spinner';
+import useConnector from "../hooks/useConnector";
 
-interface AddCitizenProps {
-    // to do, type of contract
-    contract: any;
-    account: string | null | undefined;
-}
+const AddCitizen: React.FC = () => {
 
-const AddCitizen: React.FC<AddCitizenProps> = ({ contract, account }) => {
+    const { contract, account } = useConnector();
 
     const [loading, setLoading] = useState<boolean>(false);
 
