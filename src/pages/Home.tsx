@@ -1,11 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import Modal from "../components/Modal";
 import Pagination from "../components/Pagination";
-
-interface HomeProps {
-    // to do, type of contract
-    contract: any;
-}
+import useConnector from "../hooks/useConnector";
 
 export interface Citizen {
     id: string;
@@ -14,7 +10,9 @@ export interface Citizen {
     city: string;
 }
 
-const Home: React.FC<HomeProps> = ({ contract }) => {
+const Home: React.FC = () => {
+
+    const { contract } = useConnector();
 
     const [citizenList, setCitizenList] = useState<Citizen[]>([]);
     const [currentPage, setCurrentPage] = useState(1);

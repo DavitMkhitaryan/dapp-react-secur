@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Navbar isMetamaskConnected={active} onConnectClick={handleConnectClick} account={account} />
       <Routes>
-        <Route path='/' element={<Home contract={contract}/>} />
+        <Route path='/' element={<Home />} />
         <Route path='add-citizen' element={<AddCitizen contract={contract} account={account}/>} />
       </Routes>
     </BrowserRouter>
