@@ -58,7 +58,7 @@ const Pagination: React.FC<PaginationProps> = props => {
                 </td>
                 {paginationRange.map(pageNumber => {
                     if (pageNumber === DOTS) {
-                        return <li className="pagination-item dots" key={pageNumber}>&#8230;</li>;
+                        return <td className="pagination-item dots" key={pageNumber}>&#8230;</td>;
                     }
 
                     return (
