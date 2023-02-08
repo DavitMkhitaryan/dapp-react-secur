@@ -83,7 +83,7 @@ const Home: React.FC = () => {
                 <p>Citizens List</p>
                 <p>Total Records: <span className="font-bold text-green-500">{citizenList.length}</span></p>
             </div>
-            <table className="border-2 border-gray table-fixed w-[20rem] md:w-[50rem] h-[18rem] m-12 text-center text-sm md:text-base">
+            <table className="border-2 border-gray table-fixed w-[22rem] md:w-[50rem] h-[18rem] m-12 text-center text-sm md:text-base">
                 <thead className="border-b-2 shadow-sm py-2 bg-gray-200">
                     <tr>
                         <th>ID</th>
@@ -96,7 +96,7 @@ const Home: React.FC = () => {
                     {content}
                 </tbody>
                 <Pagination
-                    className="border-t-2 py-1.3 w-[19.85rem] md:w-[49.85rem] flex justify-center bg-gray-200"
+                    className="border-t-2 py-1.3 w-[21.8rem] md:w-[49.85rem] flex justify-center bg-gray-200"
                     currentPage={currentPage}
                     totalCount={citizenList.length}
                     pageSize={pageSize}
