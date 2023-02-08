@@ -37,7 +37,7 @@ const AddCitizen: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                     <label>Age</label>
-                    <input {...register("age", { required: true, maxLength: 10 })} className='border border-gray-200 focus:outline-green-300 rounded-md px-1 py-0.5' type="text" inputMode="numeric"/>
+                    <input {...register("age", { required: true, maxLength: 10 })} className='border border-gray-200 focus:outline-green-300 rounded-md px-1 py-0.5' type="number" inputMode="numeric"/>
                     {errors.age && <p className="text-red-500">This field is required</p>}
                 </div>
                 <div className="flex flex-col gap-2">
