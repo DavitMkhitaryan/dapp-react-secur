@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import Modal from "../components/Modal";
 import Pagination from "../components/Pagination";
 import useConnector from "../hooks/useConnector";
+import { TailSpin } from 'react-loader-spinner';
 
 export interface Citizen {
     id: string;
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [modalDisplayed, setModalDisplayed] = useState(false);
     const [currentNote, setCurrentNote] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
 
     const pageSize = 5;
 
@@ -52,9 +54,11 @@ const Home: React.FC = () => {
     }
 
     const setSelectedCitizenNote = (id: string) => {
-        contract.methods.getNoteByCitizenId(id).call((err: any, result: any) => {
-            console.log(result);
+        setLoading(true);
+        contract.methods.getNoteByCitizenId(id).call((err: any, result: any) => {console.log(result)})
+        .then((result: any) => {
             setCurrentNote(result);
+            setLoading(false);
         });
     }
 
@@ -76,9 +80,18 @@ const Home: React.FC = () => {
     return (
         <main className="h-screen flex items-center justify-center flex-col gap-5">
             {modalDisplayed && <Modal onClose={handleModalClose}>
-                <p className="text-lg font-bold text-green-500">Notes: </p>
-                <p className="truncate">{currentNote}</p>
-                </Modal>}
+                {loading ? <TailSpin
+                    height="30"
+                    width="30"
+                    color="rgb(74 222 128)"
+                    ariaLabel="tail-spin-loading"
+                    radius="1"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                /> : <><p className="text-lg font-bold text-green-500">Notes: </p>
+                    <p className="truncate">{currentNote}</p></>}
+            </Modal>}
             <div className="flex justify-between text-base w-[20rem] px-1 md:text-lg md:w-[50rem] md:px-1">
                 <p>Citizens List</p>
                 <p>Total Records: <span className="font-bold text-green-500">{citizenList.length}</span></p>
