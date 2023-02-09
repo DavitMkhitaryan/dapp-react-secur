@@ -27,7 +27,6 @@ const Home: React.FC = () => {
         let newCitizensArr: Citizen[] = [];
 
         contract.getPastEvents('Citizen', { fromBlock: 0, toBlock: 'latest' }).then((events: any) => {
-            console.log(events);
             events.forEach((event: any) => {
                 let citizen: Citizen = {
                     id: event.returnValues[0],
@@ -37,7 +36,6 @@ const Home: React.FC = () => {
                 }
                 newCitizensArr.push(citizen);
             });
-            console.log(newCitizensArr);
             setCitizenList([...newCitizensArr]);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,7 +53,7 @@ const Home: React.FC = () => {
 
     const setSelectedCitizenNote = (id: string) => {
         setLoading(true);
-        contract.methods.getNoteByCitizenId(id).call((err: any, result: any) => {console.log(result)})
+        contract.methods.getNoteByCitizenId(id).call()
         .then((result: any) => {
             setCurrentNote(result);
             setLoading(false);
