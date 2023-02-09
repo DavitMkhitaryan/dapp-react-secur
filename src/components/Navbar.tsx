@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
                             <p className='text-sm md:text-base whitespace-nowrap'>Add Citizen</p>
                         </button>
                     </Link>
-                    <div className='border border-gray-300 px-4 py-4 m-2 max-h-10 rounded w-14 md:w-28 h-8 md:h-12 flex justify-center items-center'>
+                    <div className='border border-gray-300 px-4 py-4 m-2 max-h-10 rounded w-14 md:w-60 h-8 md:h-12 flex justify-center items-center'>
                         <p className='account-txt text-sm md:text-base'>{account}</p>
                     </div>
                 </div>
