@@ -2,6 +2,15 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { TailSpin } from 'react-loader-spinner';
 import useConnector from "../hooks/useConnector";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+interface FormInputs {
+    name: string;
+    age: string;
+    city: string;
+    note: string;
+}
 
 const AddCitizen: React.FC = () => {
 
@@ -9,7 +18,7 @@ const AddCitizen: React.FC = () => {
 
     const [loading, setLoading] = useState<boolean>(false);
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormInputs>({
         defaultValues: {
             name: '',
             age: '',
@@ -18,31 +27,68 @@ const AddCitizen: React.FC = () => {
         }
     });
 
+    const onFormSubmit = (data: FormInputs) => {
+        setLoading(true);
+        contract.methods.addCitizen(data.age, data.city, data.name, data.note).send(
+            {
+                from: account
+            })
+            .then(() => {
+                notifySuccess();
+            })
+            .catch((error: any) => {
+                notifyError(error.message);
+                console.log(error.message);
+            })
+            .finally(() => {
+                setLoading(false);
+                reset();
+            });
+    }
+
+
+    const notifySuccess = () => {
+        toast.success('Citizen added successfully', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+
+    const notifyError = (error: string) => {
+        toast.error(error, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    }
+
     return (
         <main className="h-screen flex items-center justify-center flex-col gap-5">
-            <form onSubmit={handleSubmit((data) => {
-                console.log(data);
-                setLoading(true);
-                contract.methods.addCitizen(data.age, data.city, data.name, data.note).send({
-                    from: account
-                }).then(() => { setLoading(false) }).catch((error: any) => {
-                    console.log(error);
-                    setLoading(false);
-                });
-            })} className='grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-1 border border-gray-200 p-20 shadow-md m-5'>
+            <form onSubmit={handleSubmit(onFormSubmit)} className='grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-1 border border-gray-200 p-20 shadow-md m-5'>
                 <div className="flex flex-col gap-2">
                     <label>Name</label>
-                    <input {...register("name", { required: true, maxLength: 150 })} className='border border-gray-200 focus:outline-green-300 rounded-md px-1 py-0.5' />
+                    <input {...register("name", { required: true })} className='border border-gray-200 focus:outline-green-300 rounded-md px-1 py-0.5' />
                     {errors.name && <p className="text-red-500">This field is required</p>}
                 </div>
                 <div className="flex flex-col gap-2">
                     <label>Age</label>
-                    <input {...register("age", { required: true, maxLength: 10 })} className='border border-gray-200 focus:outline-green-300 rounded-md px-1 py-0.5' type="number" inputMode="numeric"/>
+                    <input {...register("age", { required: true })} className='border border-gray-200 focus:outline-green-300 rounded-md px-1 py-0.5' type="number" inputMode="numeric" min="18" max="104" />
                     {errors.age && <p className="text-red-500">This field is required</p>}
                 </div>
                 <div className="flex flex-col gap-2">
                     <label>City</label>
-                    <input {...register("city", { required: true, maxLength: 100 })} className='border border-gray-200 focus:outline-green-300 rounded-md px-1 py-0.5' />
+                    <input {...register("city", { required: true })} className='border border-gray-200 focus:outline-green-300 rounded-md px-1 py-0.5' />
                     {errors.city && <p className="text-red-500">This field is required</p>}
                 </div>
                 <div className="col-span-full flex flex-col gap-2">
@@ -65,6 +111,7 @@ const AddCitizen: React.FC = () => {
                     Add
                 </button>}
             </form>
+            <ToastContainer />
         </main>
     );
 }
