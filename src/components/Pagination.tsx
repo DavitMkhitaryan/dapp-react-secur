@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { usePagination, DOTS } from '../hooks/usePagination';
+import { usePagination, leftDots, rightDots } from '../hooks/usePagination';
 import '../styles/pagination.scss';
 
 interface PaginationProps {
@@ -57,8 +57,12 @@ const Pagination: React.FC<PaginationProps> = props => {
                     <div className="arrow left" />
                 </td>
                 {paginationRange.map(pageNumber => {
-                    if (pageNumber === DOTS) {
-                        return <td className="pagination-item dots">&#8230;</td>;
+                    if (pageNumber === leftDots) {
+                        return <td className="pagination-item dots" key='left_dots'>&#8230;</td>;
+                    }
+
+                    if (pageNumber === rightDots) {
+                        return <td className="pagination-item dots" key='right_dots'>&#8230;</td>;
                     }
 
                     return (
