@@ -14,7 +14,7 @@ interface FormInputs {
 
 const AddCitizen: React.FC = () => {
 
-    const { contract, account } = useConnector();
+    const { contract, account, chainId } = useConnector();
 
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -28,22 +28,26 @@ const AddCitizen: React.FC = () => {
     });
 
     const onFormSubmit = (data: FormInputs) => {
-        setLoading(true);
-        contract.methods.addCitizen(data.age, data.city, data.name, data.note).send(
-            {
-                from: account
-            })
-            .then(() => {
-                notifySuccess();
-                reset();
-            })
-            .catch((error: any) => {
-                notifyError(error.message);
-                console.log(error.message);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+        if (chainId === 5) {
+            setLoading(true);
+            contract.methods.addCitizen(data.age, data.city, data.name, data.note).send(
+                {
+                    from: account
+                })
+                .then(() => {
+                    notifySuccess();
+                    reset();
+                })
+                .catch((error: any) => {
+                    notifyError(error.message);
+                    console.log(error.message);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        } else {
+            notifyError('Connect to Goerli Network to Create Citizen');
+        }
     }
 
 

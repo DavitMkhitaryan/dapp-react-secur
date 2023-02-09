@@ -22,7 +22,7 @@ type ConnectorProviderType = {
 
 const ConnectorProvider: React.FC<ConnectorProviderType> = ({ children }) => {
 
-    const { activate, active, account } = useWeb3React();
+    const { activate, active, account, chainId } = useWeb3React();
 
     useEffect(() => {
         const connectWalletOnPageLoad = async () => {
@@ -51,7 +51,8 @@ const ConnectorProvider: React.FC<ConnectorProviderType> = ({ children }) => {
         account,
         handleConnectClick,
         contract,
-        address
+        address,
+        chainId
     }
 
     return (
