@@ -35,6 +35,7 @@ const AddCitizen: React.FC = () => {
             })
             .then(() => {
                 notifySuccess();
+                reset();
             })
             .catch((error: any) => {
                 notifyError(error.message);
@@ -42,7 +43,6 @@ const AddCitizen: React.FC = () => {
             })
             .finally(() => {
                 setLoading(false);
-                reset();
             });
     }
 
