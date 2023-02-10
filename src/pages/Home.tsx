@@ -16,8 +16,8 @@ const Home: React.FC = () => {
     const { contract } = useConnector();
 
     const [citizenList, setCitizenList] = useState<Citizen[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [modalDisplayed, setModalDisplayed] = useState(false);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [modalDisplayed, setModalDisplayed] = useState<boolean>(false);
     const [currentNote, setCurrentNote] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
 

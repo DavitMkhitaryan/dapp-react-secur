@@ -9,7 +9,7 @@ interface PaginationProps {
     siblingCount: number,
     currentPage: number,
     pageSize: number,
-    className: any
+    className: string
 }
 
 const Pagination: React.FC<PaginationProps> = props => {
