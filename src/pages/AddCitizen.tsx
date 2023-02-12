@@ -4,6 +4,7 @@ import { TailSpin } from 'react-loader-spinner';
 import useConnector from "../hooks/useConnector";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from '../components/Button';
 
 interface FormInputs {
     name: string;
@@ -111,9 +112,9 @@ const AddCitizen: React.FC = () => {
                         wrapperClass=""
                         visible={true}
                     />
-                </div> : <button className="col-span-full text-md bg-gray-300 px-8 py-2 my-4 rounded hover:bg-green-400 active:bg-green-600 max-h-10 flex justify-center items-center" type="submit">
+                </div> : <Button className="col-span-full text-md px-8 py-2 my-4 max-h-10" type="submit">
                     Add
-                </button>}
+                </Button>}
             </form>
             <ToastContainer />
         </main>

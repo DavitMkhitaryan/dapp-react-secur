@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import { useEffect } from "react";
+import Button from './Button';
 
 interface ModalProps {
     onClose: () => void,
@@ -23,7 +24,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
                 <div className="flex flex-col justify-between h-full">
                     {children}
                     <div className="flex justify-end">
-                        <button onClick={onClose} className='bg-gray-300 px-8 py-2 m-2 max-h-10 rounded hover:bg-green-400 active:bg-green-600 w-18 md:w-28 flex justify-center items-center'>Close</button>
+                        <Button onClick={onClose} className='px-8 py-2 m-2 max-h-10 w-18 md:w-28'>Close</Button>
                     </div>
                 </div>
             </div>
