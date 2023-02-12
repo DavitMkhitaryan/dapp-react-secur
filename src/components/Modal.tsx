@@ -7,7 +7,7 @@ interface ModalProps {
     children?: React.ReactNode
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
+const Modal = ({ onClose, children }: ModalProps) => {
 
     useEffect(() => {
         document.body.classList.add('overflow-hidden');

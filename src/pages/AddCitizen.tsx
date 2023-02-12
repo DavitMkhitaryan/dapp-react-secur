@@ -13,7 +13,7 @@ interface FormInputs {
     note: string;
 }
 
-const AddCitizen: React.FC = () => {
+const AddCitizen = () => {
 
     const { contract, account, chainId } = useConnector();
 

@@ -20,7 +20,7 @@ type ConnectorProviderType = {
     children: ReactElement;
 };
 
-const ConnectorProvider: React.FC<ConnectorProviderType> = ({ children }) => {
+const ConnectorProvider = ({ children }: ConnectorProviderType) => {
 
     const { activate, active, account, chainId } = useWeb3React();
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useConnector from '../hooks/useConnector';
 import Button from './Button';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
 
     const { active, handleConnectClick, account} = useConnector();
 

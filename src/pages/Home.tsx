@@ -11,7 +11,7 @@ export interface Citizen {
     city: string;
 }
 
-const Home: React.FC = () => {
+const Home = () => {
 
     const { contract } = useConnector();
 

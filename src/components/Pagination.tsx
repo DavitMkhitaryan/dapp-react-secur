@@ -12,7 +12,7 @@ interface PaginationProps {
     className: string
 }
 
-const Pagination: React.FC<PaginationProps> = props => {
+const Pagination = (props: PaginationProps) => {
     const {
         onPageChange,
         totalCount,
