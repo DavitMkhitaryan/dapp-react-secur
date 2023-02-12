@@ -4,6 +4,8 @@ import './index.css';
 import { Web3ReactProvider } from '@web3-react/core'
 import { ExternalProvider, JsonRpcFetchFunc, Web3Provider } from "@ethersproject/providers";
 import { ConnectorProvider } from './context/connector';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 function getLibrary(provider: ExternalProvider | JsonRpcFetchFunc) {
   return new Web3Provider(provider);
@@ -15,7 +17,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <Web3ReactProvider getLibrary={getLibrary}>
     <ConnectorProvider>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ConnectorProvider>
   </Web3ReactProvider>
 );

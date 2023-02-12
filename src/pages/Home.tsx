@@ -3,6 +3,8 @@ import Modal from "../components/Modal";
 import Pagination from "../components/Pagination";
 import useConnector from "../hooks/useConnector";
 import { TailSpin } from 'react-loader-spinner';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { fetchCitizensList } from "../store";
 
 export interface Citizen {
     id: string;
@@ -15,6 +17,8 @@ const Home: React.FC = () => {
 
     const { contract } = useConnector();
 
+    const dispatch = useAppDispatch();
+
     const [citizenList, setCitizenList] = useState<Citizen[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [modalDisplayed, setModalDisplayed] = useState<boolean>(false);
@@ -23,21 +27,9 @@ const Home: React.FC = () => {
 
     const pageSize = 5;
 
+    
     useEffect(() => {
-        let newCitizensArr: Citizen[] = [];
-
-        contract.getPastEvents('Citizen', { fromBlock: 0, toBlock: 'latest' }).then((events: any) => {
-            events.forEach((event: any) => {
-                let citizen: Citizen = {
-                    id: event.returnValues[0],
-                    name: event.returnValues[3],
-                    age: event.returnValues[1],
-                    city: event.returnValues[2]
-                }
-                newCitizensArr.push(citizen);
-            });
-            setCitizenList([...newCitizensArr]);
-        });
+        dispatch(fetchCitizensList());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
