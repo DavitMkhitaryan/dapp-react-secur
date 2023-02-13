@@ -97,10 +97,10 @@ const Home = () => {
             <table className="border-2 border-gray table-fixed w-[22rem] md:w-[50rem] h-[18rem] m-12 text-center text-sm md:text-base">
                 <thead className="border-b-2 shadow-sm py-2 bg-gray-200">
                     <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>AGE</th>
-                        <th>CITY</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>City</th>
                     </tr>
                 </thead>
                 <tbody className="h-[100%]">
