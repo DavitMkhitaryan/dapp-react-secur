@@ -4,7 +4,7 @@ import { usePagination, leftDots, rightDots } from '../hooks/usePagination';
 import '../styles/pagination.scss';
 
 interface PaginationProps {
-    onPageChange: any,
+    onPageChange: (currentPage: string | number) => void,
     totalCount: number,
     siblingCount: number,
     currentPage: number,
